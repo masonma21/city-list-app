@@ -14,29 +14,12 @@ body {
   text-align: center;
 }
 
-.intro-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.intro-title {
-  font-size: 24px;
-  color: #333333;
-  margin: 0;
-}
-
 .loading-screen {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-size: 12px;
+  font-size: 24px;
   color: #007bff;
   background-color: #f4f4f9;
 }
@@ -62,32 +45,39 @@ body {
 
 .content-container {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   max-width: 800px;
   background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .controls {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 15px;
 }
 
-.controls h1 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 10px;
-  text-align: left;
+.city-list {
+  flex: 1;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.city-list li {
+  font-size: 18px;
+  color: #333333;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.city-list li:last-child {
+  border-bottom: none;
 }
 
 input[type="text"] {
   width: 100%;
-  padding: 10px 12px;
+  padding: 8px 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -97,11 +87,12 @@ input[type="text"] {
 .sort-key {
   display: flex;
   gap: 10px;
-  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .sort-key label {
-  color: #555;
+  font-size: 16px;
+  color: #555555;
 }
 
 button {
@@ -113,43 +104,10 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%;
 }
 
 button:hover {
   background-color: #0056b3;
-}
-
-.city-table-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.city-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.city-table th,
-.city-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  font-size: 18px;
-  text-align: left;
-}
-
-.city-table th {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.city-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.city-table tr:hover {
-  background-color: #f1f1f1;
 }
 
 .display-button {
@@ -161,8 +119,7 @@ button:hover {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
-  width: 200px;
+  margin-top: 20px;
 }
 
 .display-button:hover {

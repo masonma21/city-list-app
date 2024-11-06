@@ -36,7 +36,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-size: 12px;
+  font-size: 24px;
   color: #007bff;
   background-color: #f4f4f9;
 }
@@ -111,60 +111,5 @@ button {
   background-color: #007bff;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.city-table-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.city-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.city-table th,
-.city-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  font-size: 18px;
-  text-align: left;
-}
-
-.city-table th {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.city-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.city-table tr:hover {
-  background-color: #f1f1f1;
-}
-
-.display-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-  width: 200px;
-}
-
-.display-button:hover {
-  background-color: #0056b3;
+  cursor:
 }

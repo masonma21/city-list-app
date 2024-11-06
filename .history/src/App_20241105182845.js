@@ -58,7 +58,7 @@ function App() {
         <div className="spinner"></div>
         <h2>Loading cities...</h2>
       </div>
-    );
+    );f
   }
 
   return (

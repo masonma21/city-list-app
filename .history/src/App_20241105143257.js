@@ -1,0 +1,104 @@
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState('');
+  const [sortKey, setSortKey] = useState('name');
+  const [sortDirection, setSortDirection] = useState('ascending');
+
+  useEffect(() => {
+    fetch('https://roots.thecompernolles.com/cities.json')
+      .then((response) => response.json())
+      .then((data) => {
+        setCities(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching cities:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  const filteredCities = React.useMemo(() => {
+    return cities.filter((city) => {
+      return (
+        city.name.toLowerCase().includes(query.toLowerCase()) ||
+        city.state.toLowerCase().includes(query.toLowerCase())
+      );
+    });
+  }, [cities, query]);
+
+  const sortedCities = React.useMemo(() => {
+    let sortableCities = [...filteredCities];
+    sortableCities.sort((a, b) => {
+      const aKey = a[sortKey].toLowerCase();
+      const bKey = b[sortKey].toLowerCase();
+      if (aKey < bKey) {
+        return sortDirection === 'ascending' ? -1 : 1;
+      }
+      if (aKey > bKey) {
+        return sortDirection === 'ascending' ? 1 : -1;
+      }
+      return 0;
+    });
+    return sortableCities;
+  }, [filteredCities, sortKey, sortDirection]);
+
+  if (loading) {
+    return <div>Loading cities...</div>;
+  }
+
+  return (
+    <div className="container">
+      <h1>List of Cities</h1>
+
+      <div className="controls">
+        {/* Filter Input */}
+        <input
+          type="text"
+          placeholder="Filter cities"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+
+        {/* Sort Key Selection */}
+        <div className="sort-key">
+          <label>
+            <input
+              type="radio"
+              value="name"
+              checked={sortKey === 'name'}
+              onChange={(e) => setSortKey(e.target.value)}
+            />
+            Name
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="state"
+              checked={sortKey === 'state'}
+              onChange={(e) => setSortKey(e.target.value)}
+            />
+            State
+          </label>
+        </div>
+
+        {/* Sort Direction Toggle */}
+        <button onClick={() => setSortDirection(sortDirection === 'ascending' ? 'descending' : 'ascending')}>
+          Sort {sortDirection === 'ascending' ? 'Descending' : 'Ascending'}
+        </button>
+      </div>
+
+      <ul>
+        {sortedCities.map((city) => (
+          <li key={city.id}>
+            {city.name}, {city.state}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;

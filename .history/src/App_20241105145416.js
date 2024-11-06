@@ -67,7 +67,7 @@ function App() {
         <div className="intro-container">
           <h1 className="intro-title">List of Cities</h1>
           <button className="display-button" onClick={handleDisplayCities}>
-            Show
+            Display Cities
           </button>
         </div>
       )}
@@ -109,24 +109,13 @@ function App() {
             </button>
           </div>
 
-          <div className="city-table-container">
-            <table className="city-table">
-              <thead>
-                <tr>
-                  <th>City</th>
-                  <th>State</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedCities.map((city) => (
-                  <tr key={city.id}>
-                    <td>{city.name}</td>
-                    <td>{city.state}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ul className="city-list">
+            {sortedCities.map((city) => (
+              <li key={city.id}>
+                {city.name}, {city.state}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>

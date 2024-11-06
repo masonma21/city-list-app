@@ -4,22 +4,23 @@ import './App.css';
 function App() {
   const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showCities, setShowCities] = useState(false);
+  const [showCities, setShowCities] = useState(false); // New state to control showing cities
   const [query, setQuery] = useState('');
   const [sortKey, setSortKey] = useState('name');
   const [sortDirection, setSortDirection] = useState('ascending');
 
+  // Function to handle button click to display cities
   const handleDisplayCities = () => {
     setLoading(true);
-    setShowCities(false);
+    setShowCities(false); // Ensure cities are hidden initially
     fetch('https://roots.thecompernolles.com/cities.json')
       .then((response) => response.json())
       .then((data) => {
         setCities(data);
         setTimeout(() => {
           setLoading(false);
-          setShowCities(true);
-        }, 500);
+          setShowCities(true); // Show cities after loading
+        }, 500); // 0.5-second delay
       })
       .catch((error) => {
         console.error('Error fetching cities:', error);
@@ -62,20 +63,20 @@ function App() {
   }
 
   return (
-    <div className="app-container">
+    <div className="container">
+      <h1>List of Cities</h1>
+
+      {/* Display Cities button */}
       {!showCities && (
-        <div className="intro-container">
-          <h1 className="intro-title">List of Cities</h1>
-          <button className="display-button" onClick={handleDisplayCities}>
-            Show
-          </button>
-        </div>
+        <button className="display-button" onClick={handleDisplayCities}>
+          Show
+        </button>
       )}
 
+      {/* Cities list and controls */}
       {showCities && (
-        <div className="content-container">
+        <>
           <div className="controls">
-            <h1>List of Cities</h1>
             <input
               type="text"
               placeholder="Filter cities"
@@ -109,25 +110,14 @@ function App() {
             </button>
           </div>
 
-          <div className="city-table-container">
-            <table className="city-table">
-              <thead>
-                <tr>
-                  <th>City</th>
-                  <th>State</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedCities.map((city) => (
-                  <tr key={city.id}>
-                    <td>{city.name}</td>
-                    <td>{city.state}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+          <ul>
+            {sortedCities.map((city) => (
+              <li key={city.id}>
+                {city.name}, {city.state}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );

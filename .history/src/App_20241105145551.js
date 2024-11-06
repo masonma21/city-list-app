@@ -67,7 +67,7 @@ function App() {
         <div className="intro-container">
           <h1 className="intro-title">List of Cities</h1>
           <button className="display-button" onClick={handleDisplayCities}>
-            Show
+            Display Cities
           </button>
         </div>
       )}

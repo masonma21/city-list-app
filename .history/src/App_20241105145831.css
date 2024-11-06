@@ -48,7 +48,7 @@ body {
   border-top: 6px solid #007bff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 @keyframes spin {

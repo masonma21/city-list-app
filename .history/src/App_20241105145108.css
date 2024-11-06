@@ -14,29 +14,12 @@ body {
   text-align: center;
 }
 
-.intro-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.intro-title {
-  font-size: 24px;
-  color: #333333;
-  margin: 0;
-}
-
 .loading-screen {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-size: 12px;
+  font-size: 24px;
   color: #007bff;
   background-color: #f4f4f9;
 }
@@ -120,36 +103,24 @@ button:hover {
   background-color: #0056b3;
 }
 
-.city-table-container {
+.city-list {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  padding-left: 20px;
 }
 
-.city-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.city-table th,
-.city-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
+.city-list li {
   font-size: 18px;
+  color: #333333;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
   text-align: left;
 }
 
-.city-table th {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.city-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.city-table tr:hover {
-  background-color: #f1f1f1;
+.city-list li:last-child {
+  border-bottom: none;
 }
 
 .display-button {
@@ -161,8 +132,7 @@ button:hover {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
-  width: 200px;
+  margin-top: 20px;
 }
 
 .display-button:hover {

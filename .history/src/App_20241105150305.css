@@ -97,7 +97,7 @@ input[type="text"] {
 .sort-key {
   display: flex;
   gap: 10px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .sort-key label {
