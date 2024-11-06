@@ -41,18 +41,18 @@ test('filters cities based on user input', async () => {
 
 test('sorts cities by name or state', async () => {
   render(<App />);
-  const buttonElement = screen.getByText(/Show/i);
+  const buttonElement = screen.getByText(/Display Cities/i);
   fireEvent.click(buttonElement);
 
   await waitFor(() => {
     expect(screen.getByText(/List of Cities/i)).toBeInTheDocument();
   });
 
-  // Click the sort button
+  // Click the sort button to toggle sorting order
   const sortButton = screen.getByText(/Sort/i);
   fireEvent.click(sortButton);
 
-  // Assuming the cities are sorted in descending order after the click and "San José" should be first in descending order
-  const sortedCity = screen.getByText(/San José/i); 
+  // Assuming the cities are sorted in descending order after the click
+  const sortedCity = screen.getByText(/San José/i); // Assuming "San José" should be last in descending order
   expect(sortedCity).toBeInTheDocument();
 });

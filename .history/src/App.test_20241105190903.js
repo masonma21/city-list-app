@@ -48,11 +48,12 @@ test('sorts cities by name or state', async () => {
     expect(screen.getByText(/List of Cities/i)).toBeInTheDocument();
   });
 
-  // Click the sort button
+  // Click the sort button to toggle sorting order
   const sortButton = screen.getByText(/Sort/i);
   fireEvent.click(sortButton);
 
-  // Assuming the cities are sorted in descending order after the click and "San José" should be first in descending order
+  // Assuming the cities are sorted in descending order after the click
   const sortedCity = screen.getByText(/San José/i); 
+  "San José" should be last in descending order
   expect(sortedCity).toBeInTheDocument();
 });

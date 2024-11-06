@@ -53,6 +53,6 @@ test('sorts cities by name or state', async () => {
   fireEvent.click(sortButton);
 
   // Assuming the cities are sorted in descending order after the click and "San José" should be first in descending order
-  const sortedCity = screen.getByText(/San José/i); 
+  const sortedCity = screen.getByText(/San José/i); // Assuming 
   expect(sortedCity).toBeInTheDocument();
 });

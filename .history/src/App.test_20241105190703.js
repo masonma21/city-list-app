@@ -23,36 +23,29 @@ test('displays loading message and fetches cities when Show button is clicked', 
   });
 });
 
-test('filters cities based on user input', async () => {
+test('sorts cities by name or state in both ascending and descending order', async () => {
   render(<App />);
-  const buttonElement = screen.getByText(/Show/i);
+  const buttonElement = screen.getByTestId('show-button');
   fireEvent.click(buttonElement);
 
   await waitFor(() => {
     expect(screen.getByText(/List of Cities/i)).toBeInTheDocument();
   });
 
-  // Assuming there is a city with the name "Chicago"
-  const filterInput = screen.getByPlaceholderText(/Filter cities/i);
-  fireEvent.change(filterInput, { target: { value: 'Chicago' } });
-
-  expect(screen.getByText(/Chicago/i)).toBeInTheDocument();
-});
-
-test('sorts cities by name or state', async () => {
-  render(<App />);
-  const buttonElement = screen.getByText(/Show/i);
-  fireEvent.click(buttonElement);
-
-  await waitFor(() => {
-    expect(screen.getByText(/List of Cities/i)).toBeInTheDocument();
-  });
-
-  // Click the sort button
+  // Ascending order
   const sortButton = screen.getByText(/Sort/i);
   fireEvent.click(sortButton);
 
-  // Assuming the cities are sorted in descending order after the click and "San José" should be first in descending order
-  const sortedCity = screen.getByText(/San José/i); 
-  expect(sortedCity).toBeInTheDocument();
+  const citiesAscending = screen.getAllByText(/Chicago|El Paso|San José/i);
+  expect(citiesAscending[0]).toHaveTextContent("Chicago");
+  expect(citiesAscending[1]).toHaveTextContent("El Paso");
+  expect(citiesAscending[2]).toHaveTextContent("San José");
+
+  // Descending order
+  fireEvent.click(sortButton);
+
+  const citiesDescending = screen.getAllByText(/Chicago|El Paso|San José/i);
+  expect(citiesDescending[0]).toHaveTextContent("San José");
+  expect(citiesDescending[1]).toHaveTextContent("El Paso");
+  expect(citiesDescending[2]).toHaveTextContent("Chicago");
 });

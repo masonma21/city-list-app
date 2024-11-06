@@ -39,7 +39,7 @@ test('filters cities based on user input', async () => {
   expect(screen.getByText(/Chicago/i)).toBeInTheDocument();
 });
 
-test('sorts cities by name or state', async () => {
+test('sorts cities by name or state in both ascending and descending order', async () => {
   render(<App />);
   const buttonElement = screen.getByText(/Show/i);
   fireEvent.click(buttonElement);
@@ -48,11 +48,14 @@ test('sorts cities by name or state', async () => {
     expect(screen.getByText(/List of Cities/i)).toBeInTheDocument();
   });
 
-  // Click the sort button
+  // Get the sort button and click to sort in ascending order
   const sortButton = screen.getByText(/Sort/i);
   fireEvent.click(sortButton);
 
-  // Assuming the cities are sorted in descending order after the click and "San José" should be first in descending order
-  const sortedCity = screen.getByText(/San José/i); 
-  expect(sortedCity).toBeInTheDocument();
-});
+  // Check for ascending order: assuming "Chicago" should come before "El Paso" and "San José"
+  const citiesAscending = screen.getAllByText(/Chicago|El Paso|San José/i);
+  expect(citiesAscending[0]).toHaveTextContent("Chicago");
+  expect(citiesAscending[1]).toHaveTextContent("El Paso");
+  expect(citiesAscending[2]).toHaveTextContent("San José");
+
+  
